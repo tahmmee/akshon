@@ -37,3 +37,12 @@ jobs:
 
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.2.0
+
+      - name: Install helm unittest plugin
+        run: helm plugin install https://github.com/vbehar/helm3-unittes
+
+      - name: Unit test the chart
+        run: helm unittest couchbase-operator
+
+      - name: Lint chart
+        run: helm lint couchbase-operator
