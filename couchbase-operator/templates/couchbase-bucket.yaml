@@ -4,6 +4,8 @@
 {{- $rootScope := . -}}
 apiVersion: v1
 kind: List
+metadata:
+  name: "bucket-list"
 items:
 {{- range $bucket, $spec := .Values.buckets }}
 {{- if typeIs "map[string]interface {}" $spec }}
