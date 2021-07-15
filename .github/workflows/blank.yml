@@ -60,4 +60,3 @@ jobs:
 
       - name: Validate chart install
         run: ct install --chart-dirs $GITHUB_WORKSPACE --charts couchbase-operator
-

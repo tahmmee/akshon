@@ -5,6 +5,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: {{ template "couchbase-cluster.admin-secret" . }}
+  something: else
 type: Opaque
 data:
   username: {{ template "couchbase-cluster.username" . }}
