@@ -22,6 +22,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
@@ -58,3 +63,10 @@ jobs:
 
       - name: Validate chart install
         run: ct install --chart-dirs $GITHUB_WORKSPACE --charts couchbase-operator
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.1
+        with:
+          charts_dir: "./"
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
