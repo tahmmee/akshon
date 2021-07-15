@@ -30,6 +30,15 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.1
+        with:
+          charts_dir: "./"
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
@@ -54,9 +63,3 @@ jobs:
       - name: Validate chart install
         run: ct install --chart-dirs $GITHUB_WORKSPACE --charts couchbase-operator
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.1
-        with:
-          charts_dir: "./"
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

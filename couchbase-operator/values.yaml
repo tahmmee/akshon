@@ -13,6 +13,8 @@ install:
   # -- install sync gateway
   syncGateway: false
 
+another: jumpoff
+
 # couchbaseOperator is the controller for couchbase cluster
 couchbaseOperator:
   # -- name of the couchbase operator
